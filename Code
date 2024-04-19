@@ -1,0 +1,51 @@
+def __init__(self, creator, staff_id, email, description):
+    self.creator = creator
+    self.staff_id = staff_id
+    self.email = email
+    self.description = description
+    self.ticket_number = Ticket.ticket_count + 2001
+    self.response = "Not Yet Provided"
+    self.status = "Open"
+    Ticket.created_tickets.append(self)
+    Ticket.ticket_count += 1
+
+def resolve_ticket(self, response):
+    self.response = response
+    self.status = "Closed"
+    Ticket.resolved_tickets.append(self)
+
+def reopen_ticket(self):
+    self.response = "Not Yet Provided"
+    self.status = "Open"
+    Ticket.resolved_tickets.remove(self)
+    Ticket.created_tickets.append(self)
+
+def password_change(self):
+    new_password = self.generate_new_password()
+    self.response = "New password generated: " + new_password
+    self.status = "Closed"
+    Ticket.resolved_tickets.append(self)
+
+def generate_new_password(self):
+    return "JOJoh"
+
+
+def print_all_tickets():
+    for ticket in Ticket.created_tickets:
+        print("\nTicket Number:", ticket.ticket_number)
+        print("Ticket Creator:", ticket.creator)
+        print("Staff ID:", ticket.staff_id)
+        print("Email Address:", ticket.email)
+        print("Description:", ticket.description)
+        print("Response:", ticket.response)
+        print("Ticket Status:", ticket.status)
+
+
+def ticket_stats():
+    total_tickets = len(Ticket.created_tickets)
+    resolved_tickets = len(Ticket.resolved_tickets)
+    tickets_to_solve = total_tickets - resolved_tickets
+    print("\nDisplaying Ticket Statistics")
+    print("Tickets Created:", total_tickets)
+    print("Tickets Resolved:", resolved_tickets)
+    print("Tickets To Solve:", tickets_to_solve)
